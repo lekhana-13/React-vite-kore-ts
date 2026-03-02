@@ -1,0 +1,29 @@
+
+  body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #0c1511;
+  color: #c7f9cc;
+}
+
+.app-container {
+  display: flex;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+.card {
+  background: #16271f;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
