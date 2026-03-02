@@ -38,7 +38,7 @@ const BarChartComponent = () => {
           {/* X Axis → $0k, $15k, $30k, $45k, $60k */}
           <XAxis
             type="number"
-            tickFormatter={(value: number) => `$${value / 1000}k`}
+            tickFormatter={(value) => `$${Number(value ?? 0) / 1000}k`}
             ticks={[0, 15000, 30000, 45000, 60000]}
             domain={[0, 60000]}
             tick={{ fill: "#9ca3af", fontSize: 12 }}
