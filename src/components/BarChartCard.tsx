@@ -73,7 +73,7 @@ const CostByServiceChart: React.FC = () => {
         <BarChart
           layout="vertical"
           data={data}
-          margin={{ top: 10, right: 20, left: 10, bottom: 0 }}
+          margin={{ top: 10, right: 10, left: 0, bottom: 5}}
         >
           <defs>
             <linearGradient id="greenGradient" x1="0" y1="0" x2="1" y2="0">

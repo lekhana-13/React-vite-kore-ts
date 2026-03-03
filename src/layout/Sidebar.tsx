@@ -5,19 +5,21 @@ interface Props {
 
 const Sidebar = ({ open, setOpen }: Props) => {
   return (
-    <div className={`sidebar ${open ? "active" : ""}`}>
-      <h2>Dashboard</h2>
+    <>
+      {/* Sidebar */}
+      <div className={`sidebar ${open ? "active" : ""}`}>
+        <h2>Dashboard</h2>
 
-      <ul>
-        <li>Overview</li>
-        <li>Cost Analyzer</li>
-        <li>K8s Observability</li>
-        <li>GPU & AI</li>
-      </ul>
+        <ul>
+          <li onClick={() => setOpen(false)}>Overview</li>
+          <li onClick={() => setOpen(false)}>Cost Analyzer</li>
+          <li onClick={() => setOpen(false)}>GPU & AI</li>
+        </ul>
+      </div>
 
-      {/* Close sidebar when clicking link (mobile) */}
-      <div className="overlay" onClick={() => setOpen(false)} />
-    </div>
+      {/* Overlay (IMPORTANT) */}
+      {open && <div className="overlay" onClick={() => setOpen(false)} />}
+    </>
   );
 };
 
