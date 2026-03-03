@@ -1,3 +1,10 @@
+// =====================================================
+// COST TREND AREA CHART
+// Styled EXACTLY like your screenshot (Dark FinOps Theme)
+// React + Vite + TypeScript Compatible
+// =====================================================
+
+import React from "react";
 import {
   AreaChart,
   Area,
@@ -9,38 +16,54 @@ import {
 } from "recharts";
 
 const data = [
-  { week: "Week 1", value: 45000 },
-  { week: "Week 2", value: 52000 },
-  { week: "Week 3", value: 70000 },
-  { week: "Week 4", value: 62000 },
+  { week: "Week 1", value: 72000 },
+  { week: "Week 2", value: 76000 },
+  { week: "Week 3", value: 82000 },
+  { week: "Week 4", value: 78000 },
 ];
 
-const AreaChartComponent = () => {
+const AreaChartComponent: React.FC = () => {
   return (
-    <div className="chart-card">
-      <h3 className="chart-title">Cost Trend</h3>
+    <div
+      style={{
+        background: "#0b0f0c",
+        borderRadius: "16px",
+        padding: "24px",
+        border: "1px solid #1f2937",
+        height: "420px",
+      }}
+    >
+      <h3
+        style={{
+          color: "#e5e7eb",
+          fontSize: "18px",
+          fontWeight: 500,
+          marginBottom: "20px",
+        }}
+      >
+        Cost Trend
+      </h3>
 
-      <ResponsiveContainer width="100%" height={320}>
+      <ResponsiveContainer width="100%" height="85%">
         <AreaChart
           data={data}
-          margin={{ top: 10, right: 20, left: 10, bottom: 10 }}
+          margin={{ top: 10, right: 20, left: 0, bottom: 0 }}
         >
-          {/* Soft Gradient */}
           <defs>
-            <linearGradient id="softGreen" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#22c55e" stopOpacity={0.25} />
-              <stop offset="100%" stopColor="#22c55e" stopOpacity={0} />
+            {/* Subtle green glow fill like screenshot */}
+            <linearGradient id="trendFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#84cc16" stopOpacity={0.25} />
+              <stop offset="100%" stopColor="#84cc16" stopOpacity={0} />
             </linearGradient>
           </defs>
 
-          {/* Clean Grid */}
+          {/* Horizontal soft grid only */}
           <CartesianGrid
             stroke="#1f2937"
             strokeDasharray="3 3"
             vertical={false}
           />
 
-          {/* X Axis */}
           <XAxis
             dataKey="week"
             tick={{ fill: "#9ca3af", fontSize: 12 }}
@@ -48,41 +71,35 @@ const AreaChartComponent = () => {
             tickLine={false}
           />
 
-          {/* Y Axis */}
           <YAxis
-            domain={[0, 75000]}
-            ticks={[0, 25000, 50000, 75000]}
-            tickFormatter={(value) => `$${value / 1000}k`}
+            domain={[0, 100000]}
+            ticks={[0, 25000, 50000, 75000, 100000]}
+            tickFormatter={(value) => `$${value / 1000}K`}
             tick={{ fill: "#9ca3af", fontSize: 12 }}
             axisLine={false}
             tickLine={false}
           />
 
-          {/* Tooltip */}
           <Tooltip
-            formatter={(value) => {
-              if (typeof value === "number") {
-                return [`$${value.toLocaleString()}`, "Cost"];
-              }
-              return [value, "Cost"];
-            }}
+            formatter={(value: any) => [`$${value.toLocaleString()}`, "Cost"]}
             contentStyle={{
-              backgroundColor: "#0f172a",
-              border: "1px solid #22c55e",
+              backgroundColor: "#111",
+              border: "1px solid #1f2937",
               borderRadius: "8px",
-              color: "#fff",
+              color: "#84cc16",
+              fontSize: "13px",
             }}
+            cursor={{ stroke: "#84cc16", strokeWidth: 1 }}
           />
 
-          {/* Thin Smooth Line + Light Fill */}
           <Area
             type="monotone"
             dataKey="value"
-            stroke="#22c55e"
+            stroke="#84cc16"
             strokeWidth={2}
-            fill="url(#softGreen)"
+            fill="url(#trendFill)"
             dot={false}
-            activeDot={{ r: 5 }}
+            activeDot={{ r: 4, fill: "#84cc16" }}
           />
         </AreaChart>
       </ResponsiveContainer>
